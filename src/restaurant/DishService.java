@@ -1,14 +1,13 @@
 package restaurant;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class DishService {
 
-    List<Dish> dishList = new ArrayList<>();// listede Dish objeleri olacak
+    List<Dish> dishList=new ArrayList<>();//listede Dish objeleri olacak
 
-    public  void fillDishList(){
-        Dish dish1=new Dish(100,"Adana Kebabi",220);
+    public void fillDishList(){
+        Dish dish1=new Dish(100,"Adana Kebabı",220);
         Dish dish2=new Dish(101,"Urfa Kebabı",200.0);
         Dish dish3=new Dish(102,"Çökertme Kebabı",200.0);
         Dish dish4=new Dish(200,"Baklava",100.0);
@@ -18,7 +17,6 @@ public class DishService {
         Dish dish8=new Dish(301,"Kola",35.0);
         Dish dish9=new Dish(302,"Çay",15.0);
         Dish dish10=new Dish(303,"Su",7.5);
-
         this.dishList.add(dish1);
         this.dishList.add(dish2);
         this.dishList.add(dish3);
@@ -30,13 +28,30 @@ public class DishService {
         this.dishList.add(dish9);
         this.dishList.add(dish10);
     }
+
     public void showDishMenu(){
-        System.out.println("            Lezzetli Yemeklerimiz             ");
-        System.out.printf("%-3s   %-20s   %-5s\n","Kod","Adi","Fiyat");
-        System.out.printf("%-3s   %-20s   %-5s\n","---","---","-----");
+        System.out.println("                Lezzetlerimiz             ");
+        System.out.printf("%-3s   %-20s   %-5s \n","Kod","Adı","Fiyat");
+        System.out.printf("%-3s   %-20s   %-5s \n","---","---","-----");
         for (Dish dish:this.dishList){
             System.out.printf("%-3s   %-20s   %-5s Lira\n",dish.getCode(),dish.getName(),dish.getPrice());
         }
     }
+
+    public Dish findDishByCode(int code){//100
+        if(code==0){
+            System.out.println("Ana menüye yönlendiriliyorsunuz.");
+        }else{
+            for (Dish dish:this.dishList){
+                if(dish.getCode()==code){
+                    return dish;
+                }
+            }
+            System.out.println("Ürün bulunamadı.");
+        }
+        return new Dish(0,"",0);
+    }
+
+
 
 }
